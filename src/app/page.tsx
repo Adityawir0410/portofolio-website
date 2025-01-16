@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Skils from "@/components/landing/skils";
-import PortfolioSection from "@/components/landing/portofolios";
+// import PortfolioSection from "@/components/landing/portofolios";
 import AboutMe from "@/components/landing/aboutmei";
 import FallingStars from "@/components/effects/FallingStars";
 import RecentWork from "@/components/landing/recentworks";
+import Navbar from "@/components/landing/navbar";
 
 export default function Portfolio() {
   const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
@@ -86,7 +87,9 @@ export default function Portfolio() {
   }, [cursorPosition.x, cursorPosition.y]);
 
   return (
+    
     <div className="bg-black text-white min-h-screen relative overflow-hidden cursor-none">
+      {/* <Navbar /> */}
       <FallingStars />
       {/* Background Polka Dots */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

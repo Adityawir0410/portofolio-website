@@ -67,7 +67,7 @@ const Skills = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-24 md:mb-32" // Increased bottom margin further
+          className="text-center mt-8 md:mt-12 mb-32 md:mb-40" // Increased top and bottom margin
         >
           <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-6 md:mb-8">
             Tech Stack

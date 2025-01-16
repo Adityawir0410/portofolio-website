@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProjectList from "./project-list";
 import ProjectCard from "./project-card";
@@ -37,9 +37,9 @@ const projects: Project[] = [
   },
   {
     id: "3",
-    title: "Alarem",
+    title: "CALTRACK",
     mediaType: "image",
-    mediaUrl: "/Alarem.jpeg",
+    mediaUrl: "/Caltrack.png",
     description:
       "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
     category: "App Dev",
@@ -54,15 +54,19 @@ const projects: Project[] = [
       "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
     category: "App Dev",
   },
+  
+
   {
     id: "5",
-    title: "CALTRACK",
+    title: "Alarem",
     mediaType: "image",
-    mediaUrl: "/Caltrack.png",
+    mediaUrl: "/Alarem.jpeg",
     description:
       "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
     category: "App Dev",
   },
+
+
   {
     id: "6",
     title: "Company Profile",
@@ -125,10 +129,18 @@ const categories = ["Web Dev", "App Dev", "Video Editing"] as const;
 const RecentWork = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [hoveredProject, setHoveredProject] = useState<Project>(projects[0]);
-  const [selectedCategory, setSelectedCategory] = useState<
-    (typeof categories)[number] | "All"
-  >("App Dev");
+  const [selectedCategory, setSelectedCategory] = useState<(typeof categories)[number] | "All">("App Dev");
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const appDevProjects = projects.filter(project => project.category === "App Dev");
+    const caltrackProject = appDevProjects.find(project => project.title === "CALTRACK");
+    if (caltrackProject) {
+      setHoveredProject(caltrackProject);
+    } else if (appDevProjects.length > 0) {
+      setHoveredProject(appDevProjects[0]);
+    }
+  }, []);
 
   const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
@@ -142,10 +154,11 @@ const RecentWork = () => {
     setSelectedProject(null);
   };
 
-  const filteredProjects =
-    selectedCategory === "All"
-      ? projects
-      : projects.filter((project) => project.category === selectedCategory);
+  const filteredProjects = selectedCategory === "All"
+    ? projects
+    : projects.filter((project) => project.category === selectedCategory);
+
+  const displayedProjects = filteredProjects.length > 0 ? filteredProjects : projects.filter((project) => project.category === "App Dev");
 
   return (
     <div className="relative min-h-screen bg-black" ref={containerRef}>
@@ -226,7 +239,7 @@ const RecentWork = () => {
             >
               <ProjectCard project={hoveredProject} />
               <ProjectList
-                projects={filteredProjects}
+                projects={displayedProjects}
                 onProjectClick={handleProjectClick}
                 onProjectHover={handleProjectHover}
                 hoveredProject={hoveredProject}
@@ -240,3 +253,4 @@ const RecentWork = () => {
 };
 
 export default RecentWork;
+

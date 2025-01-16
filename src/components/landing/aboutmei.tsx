@@ -1,7 +1,16 @@
+"use client";
+
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 
-const games = [
+interface Game {
+  id: number;
+  title: string;
+  image: string;
+  description: string;
+}
+
+const games: Game[] = [
   {
     id: 1,
     title: "Web Enthusiast",
@@ -23,11 +32,11 @@ const games = [
 ];
 
 const AboutMeWithCards = () => {
-  const [activeId, setActiveId] = useState(1);
-  const [isSwiping, setIsSwiping] = useState(false);
-  const startXRef = useRef(0);
+  const [activeId, setActiveId] = useState<number>(1);
+  const [isSwiping, setIsSwiping] = useState<boolean>(false);
+  const startXRef = useRef<number>(0);
 
-  const handleTouchStart = (e) => {
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setIsSwiping(true);
     startXRef.current = e.touches[0].clientX;
   };
@@ -36,7 +45,7 @@ const AboutMeWithCards = () => {
     setIsSwiping(false);
   };
 
-  const handleCardClick = (id) => {
+  const handleCardClick = (id: number) => {
     if (!isSwiping) {
       setActiveId(id);
     }
@@ -70,6 +79,7 @@ const AboutMeWithCards = () => {
                   width={160}
                   height={160}
                   className="rounded-full w-full h-full object-cover p-1 hover:scale-105 transition-transform duration-300"
+                  priority
                 />
               </div>
             </div>
@@ -98,19 +108,20 @@ const AboutMeWithCards = () => {
           {games.map((game) => (
             <div
               key={game.id}
-              className={`flex-shrink-0 relative rounded-xl overflow-hidden transition-all duration-500 ease-in-out
+              className={`flex-shrink-0 relative rounded-xl overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
                 ${activeId === game.id ? 'w-[280px] sm:w-[500px] shadow-2xl' : 'w-[240px] sm:w-[320px]'}
                 h-[300px] sm:h-[400px] group select-none
               `}
               onClick={() => handleCardClick(game.id)}
             >
               <Image
-                src={game.image}
+                src={game.image || "/placeholder.svg"}
                 alt={game.title}
                 width={500}
                 height={400}
                 className="absolute inset-0 w-full h-full object-cover"
-                draggable="false"
+                draggable={false}
+                priority
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black pointer-events-none"></div>
               
