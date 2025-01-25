@@ -36,9 +36,13 @@ const ContactMe: React.FC = () => {
       } else {
         throw new Error(result.message || "Submission failed");
       }
-    } catch (err: any) {
-      setError("Something went wrong. Please try again.");
-      console.error("Error:", err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message || "Something went wrong. Please try again.");
+      } else {
+        setError("An unexpected error occurred.");
+      }
+      console.error("Error:", err);
     } finally {
       setIsSubmitting(false);
     }
