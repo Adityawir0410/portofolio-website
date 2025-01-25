@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Skils from "@/components/landing/skils";
-// import PortfolioSection from "@/components/landing/portofolios";
 import AboutMe from "@/components/landing/aboutmei";
 import FallingStars from "@/components/effects/FallingStars";
 import RecentWork from "@/components/landing/recentworks";
+import SplashScreen from "@/components/effects/SplashScreen";
+import ContactMe from "@/components/landing/contactme";
 
 export default function Portfolio() {
   const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
@@ -86,8 +87,8 @@ export default function Portfolio() {
   }, [cursorPosition.x, cursorPosition.y]);
 
   return (
-    
     <div className="bg-black text-white min-h-screen relative overflow-hidden cursor-none">
+      <SplashScreen />
       <FallingStars />
       {/* Background Polka Dots */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -122,8 +123,7 @@ export default function Portfolio() {
         />
       </div>
 
-      {/* Rest of the component remains the same */}
-      {/* Custom Cursor */}
+      {/* Custom Cursor - Only white circle */}
       <div
         className="fixed w-8 h-8 pointer-events-none mix-blend-difference z-50 transition-transform duration-100 ease-out"
         style={{
@@ -133,20 +133,6 @@ export default function Portfolio() {
         }}
       >
         <div className="w-full h-full rounded-full bg-white" />
-      </div>
-
-      {/* Gradient Follow Effect */}
-      <div
-        className="fixed pointer-events-none z-40 transition-all duration-300 ease-out"
-        style={{
-          left: cursorPosition.x,
-          top: cursorPosition.y,
-          width: isPointer ? "300px" : "100px",
-          height: isPointer ? "300px" : "100px",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <div className="w-full h-full rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 blur-xl opacity-50" />
       </div>
 
       <main className="relative">
@@ -234,8 +220,8 @@ export default function Portfolio() {
         <Skils />
 
         {/* Fourth Section - Portfolio */}
-        {/* <PortfolioSection /> */}
         <RecentWork />
+        <ContactMe/>
 
         <footer className="py-6 text-gray-400 text-lg text-center border-t border-gray-800 w-full bg-black">
           © 2025 Aditya Wirayudha. All Rights Reserved.
