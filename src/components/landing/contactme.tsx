@@ -1,24 +1,23 @@
-import type React from "react"
-import { useState } from "react"
-import Link from "next/link"
-import { Linkedin, Instagram, Github, Mail } from "lucide-react"
+import type React from "react";
+import { useState } from "react";
+import { Linkedin, Instagram, Github, Mail } from "lucide-react";
 
 const ContactMe: React.FC = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [error, setError] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setIsSubmitting(true)
-    setError("")
-    setIsSuccess(false)
+    event.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+    setIsSuccess(false);
 
-    const form = event.currentTarget
-    const formData = new FormData(form)
-    formData.append("access_key", "68a0b925-8fb5-4d30-8cdc-8139c41056a1")
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.append("access_key", "68a0b925-8fb5-4d30-8cdc-8139c41056a1");
 
-    const payload = JSON.stringify(Object.fromEntries(formData))
+    const payload = JSON.stringify(Object.fromEntries(formData));
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -28,23 +27,28 @@ const ContactMe: React.FC = () => {
           Accept: "application/json",
         },
         body: payload,
-      })
+      });
 
-      const result = await response.json()
+      const result = await response.json();
 
       if (result.success) {
-        setIsSuccess(true)
-        form.reset() // Reset the form on success
+        setIsSuccess(true);
+        form.reset(); // Reset the form on success
       } else {
-        throw new Error(result.message || "Submission failed")
+        throw new Error(result.message || "Submission failed");
       }
-    } catch (err: any) {
-      setError("Something went wrong. Please try again.")
-      console.error("Error:", err.message)
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error("Error:", err.message);
+        setError("Something went wrong. Please try again.");
+      } else {
+        console.error("Unexpected error:", err);
+        setError("An unexpected error occurred.");
+      }
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center px-6 py-12 md:py-16 lg:py-20">
@@ -65,7 +69,6 @@ const ContactMe: React.FC = () => {
             </div>
           </div>
 
-          {/* New Contact Section */}
           <div>
             <h3 className="text-lg text-gray-800 font-semibold mb-4">Contact:</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -197,8 +200,7 @@ const ContactMe: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ContactMe
-
+export default ContactMe;
