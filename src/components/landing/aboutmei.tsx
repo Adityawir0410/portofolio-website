@@ -20,13 +20,13 @@ const games: Game[] = [
   {
     id: 2,
     title: "Mobile Enthusiast",
-    image: "/image2.png",
+    image: "/banneratasdepan.svg",
     description: "I am a Mobile Enthusiast with a focus on building Android applications using Flutter."
   },
   {
     id: 3,
     title: "Video Editor",
-    image: "/image3.png",
+    image: "/punya adit.png",
     description: "RDR 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III."
   },
 ];

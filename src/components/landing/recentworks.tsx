@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import ProjectList from "./project-list";
-import ProjectCard from "./project-card";
+import { useState, useRef, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import ProjectList from "./project-list"
+import ProjectCard from "./project-card"
 
 interface Project {
-  id: string;
-  title: string;
-  mediaType: "image" | "localVideo" | "youtubeVideo";
-  mediaUrl: string;
-  thumbnailUrl?: string;
-  youtubeId?: string;
-  description: string;
-  category: "Web Dev" | "App Dev" | "Video Editing";
+  id: string
+  title: string
+  mediaType: "image" | "localVideo" | "youtubeVideo"
+  mediaUrl: string
+  thumbnailUrl?: string
+  youtubeId?: string
+  description: string
+  category: "Web Dev" | "App Dev" | "Video Editing"
 }
 
 const projects: Project[] = [
@@ -22,8 +22,7 @@ const projects: Project[] = [
     title: "Unikahidha",
     mediaType: "image",
     mediaUrl: "/Adit_DDM.jpg",
-    description:
-      "A modern website for Unikahidha, featuring responsive design and interactive elements.",
+    description: "A modern website for Unikahidha, featuring responsive design and interactive elements.",
     category: "Web Dev",
   },
   {
@@ -31,8 +30,7 @@ const projects: Project[] = [
     title: "Edutech",
     mediaType: "image",
     mediaUrl: "/placeholder.svg?height=500&width=400",
-    description:
-      "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
+    description: "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
     category: "Web Dev",
   },
   {
@@ -40,8 +38,7 @@ const projects: Project[] = [
     title: "CALTRACK",
     mediaType: "image",
     mediaUrl: "/Caltrack.png",
-    description:
-      "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
+    description: "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
     category: "App Dev",
   },
 
@@ -50,22 +47,18 @@ const projects: Project[] = [
     title: "LawMate",
     mediaType: "image",
     mediaUrl: "/placeholder.svg?height=500&width=400",
-    description:
-      "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
+    description: "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
     category: "App Dev",
   },
-  
 
   {
     id: "5",
     title: "Alarem",
     mediaType: "image",
     mediaUrl: "/Alarem.jpeg",
-    description:
-      "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
+    description: "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
     category: "App Dev",
   },
-
 
   {
     id: "6",
@@ -122,58 +115,50 @@ const projects: Project[] = [
       "A luxurious hotel website showcasing breathtaking views and top-notch amenities. Watch the stunning video tour on YouTube.",
     category: "Video Editing",
   },
-];
+]
 
-const categories = ["Web Dev", "App Dev", "Video Editing"] as const;
+const categories = ["Web Dev", "App Dev", "Video Editing"] as const
 
 const RecentWork = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [hoveredProject, setHoveredProject] = useState<Project>(projects[0]);
-  const [selectedCategory, setSelectedCategory] = useState<(typeof categories)[number] | "All">("App Dev");
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [hoveredProject, setHoveredProject] = useState<Project>(projects[0])
+  const [selectedCategory, setSelectedCategory] = useState<(typeof categories)[number] | "All">("App Dev")
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const appDevProjects = projects.filter(project => project.category === "App Dev");
-    const caltrackProject = appDevProjects.find(project => project.title === "CALTRACK");
+    const appDevProjects = projects.filter((project) => project.category === "App Dev")
+    const caltrackProject = appDevProjects.find((project) => project.title === "CALTRACK")
     if (caltrackProject) {
-      setHoveredProject(caltrackProject);
+      setHoveredProject(caltrackProject)
     } else if (appDevProjects.length > 0) {
-      setHoveredProject(appDevProjects[0]);
+      setHoveredProject(appDevProjects[0])
     }
-  }, []);
+  }, [])
 
   const handleProjectClick = (project: Project) => {
-    setSelectedProject(project);
-  };
+    setSelectedProject(project)
+  }
 
   const handleProjectHover = (project: Project) => {
-    setHoveredProject(project);
-  };
+    setHoveredProject(project)
+  }
 
   const handleBackToList = () => {
-    setSelectedProject(null);
-  };
+    setSelectedProject(null)
+  }
 
-  const filteredProjects = selectedCategory === "All"
-    ? projects
-    : projects.filter((project) => project.category === selectedCategory);
+  const filteredProjects =
+    selectedCategory === "All" ? projects : projects.filter((project) => project.category === selectedCategory)
 
-  const displayedProjects = filteredProjects.length > 0 ? filteredProjects : projects.filter((project) => project.category === "App Dev");
+  const displayedProjects =
+    filteredProjects.length > 0 ? filteredProjects : projects.filter((project) => project.category === "App Dev")
 
   return (
-    <div className="relative min-h-screen bg-black" ref={containerRef}>
+    <div className="relative min-h-screen bg-black pb-32 md:pb-48 overflow-hidden" ref={containerRef}>
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none"></div>
 
       <div className="pt-16 sm:pt-24 px-4 relative z-20">
         <div className="flex justify-center space-x-8 mb-12">
-          <button
-            onClick={() => setSelectedCategory("All")}
-            className={`text-lg transition-colors duration-300 ${
-              selectedCategory === "All" ? "text-white" : "text-gray-400"
-            }`}
-          >
-            All
-          </button>
           {categories.map((category) => (
             <button
               key={category}
@@ -197,7 +182,7 @@ const RecentWork = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center mb-24 md:mb-32"
             >
               <motion.h2
                 initial={{ y: 50, opacity: 0 }}
@@ -216,16 +201,14 @@ const RecentWork = () => {
               >
                 {selectedProject.description}
               </motion.p>
-              <div className="flex flex-col sm:flex-row justify-between w-full mt-12 px-4">
+              <div className="flex flex-col sm:flex-row justify-between w-full mt-12 px-4 relative z-30">
                 <button
                   onClick={handleBackToList}
-                  className="text-white text-base sm:text-lg hover:underline focus:outline-none mb-4 sm:mb-0"
+                  className="text-white text-base sm:text-lg hover:underline focus:outline-none mb-4 sm:mb-0 cursor-pointer relative z-30"
                 >
                   Back to List
                 </button>
-                <span className="text-white text-base sm:text-lg">
-                  Scroll to explore
-                </span>
+                <span className="text-white text-base sm:text-lg">Scroll to explore</span>
               </div>
             </motion.div>
           ) : (
@@ -248,9 +231,18 @@ const RecentWork = () => {
           )}
         </AnimatePresence>
       </div>
+      <div className="absolute -bottom-1 left-0 w-full">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#ffffff"
+            fillOpacity="1"
+            d="M0,160L48,160C96,160,192,160,288,186.7C384,213,480,267,576,266.7C672,267,768,213,864,208C960,203,1056,245,1152,245.3C1248,245,1344,203,1392,181.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default RecentWork;
+export default RecentWork
 

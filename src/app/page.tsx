@@ -207,7 +207,7 @@ export default function Portfolio() {
             }}
           >
             <img
-              src="/Adit_DDM.jpg"
+              src="/carddepan.jpg"
               alt="Profile"
               className="w-full h-full object-cover rounded-xl"
             />
@@ -223,7 +223,7 @@ export default function Portfolio() {
         <RecentWork />
         <ContactMe/>
 
-        <footer className="py-6 text-gray-400 text-lg text-center border-t border-gray-800 w-full bg-black">
+        <footer className="py-6 text-black text-lg text-center  w-full bg-white">
           © 2025 Aditya Wirayudha. All Rights Reserved.
         </footer>
       </main>
