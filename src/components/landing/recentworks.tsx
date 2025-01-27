@@ -1,19 +1,20 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import ProjectList from "./project-list"
-import ProjectCard from "./project-card"
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import ProjectList from "./project-list";
+import ProjectCard from "./project-card";
 
 interface Project {
-  id: string
-  title: string
-  mediaType: "image" | "localVideo" | "youtubeVideo"
-  mediaUrl: string
-  thumbnailUrl?: string
-  youtubeId?: string
-  description: string
-  category: "Web Dev" | "App Dev" | "Video Editing"
+  id: string;
+  title: string;
+  mediaType: "image" | "localVideo" | "youtubeVideo";
+  mediaUrl: string;
+  thumbnailUrl?: string;
+  youtubeId?: string;
+  description: string;
+  category: "Web Dev" | "App Dev" | "Video Editing";
+  websiteUrl?: string;
 }
 
 const projects: Project[] = [
@@ -21,33 +22,40 @@ const projects: Project[] = [
     id: "1",
     title: "Unikahidha",
     mediaType: "image",
-    mediaUrl: "/Adit_DDM.jpg",
-    description: "A modern website for Unikahidha, featuring responsive design and interactive elements.",
+    mediaUrl: "/cover.svg",
+    description:
+      "Website resmi UKM UNIT AKTIVITAS KEROHANIAN HINDU DHARMA Universitas Brawijaya. Menampilkan informasi kegiatan, artikel, dan resources untuk mahasiswa Hindu di UB.",
     category: "Web Dev",
+    websiteUrl: "https://unikahidha.ub.ac.id",
   },
   {
     id: "2",
     title: "Edutech",
     mediaType: "image",
-    mediaUrl: "/placeholder.svg?height=500&width=400",
-    description: "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
+    mediaUrl: "/edutechs.svg",
+    description:
+      "Website platform edukasi modern yang dirancang untuk memberikan pengalaman belajar interaktif, menarik, dan mudah diakses untuk berbagai kebutuhan pendidikan.",
     category: "Web Dev",
+    websiteUrl: "https://edutech-fe-tjvy.vercel.app",
   },
   {
     id: "3",
     title: "CALTRACK",
     mediaType: "image",
     mediaUrl: "/Caltrack.png",
-    description: "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
+    description:
+      "CalTrack adalah aplikasi berbasis mobile yang dirancang untuk mempermudah pelacakan nutrisi dan kesehatan secara otomatis berbasis AI",
     category: "App Dev",
+    websiteUrl: "https://github.com/caltrack-mage-x/CALTRACK-APP",
   },
 
   {
     id: "4",
     title: "LawMate",
     mediaType: "image",
-    mediaUrl: "/placeholder.svg?height=500&width=400",
-    description: "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
+    mediaUrl: "/lawmate.svg",
+    description:
+      "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
     category: "App Dev",
   },
 
@@ -56,7 +64,8 @@ const projects: Project[] = [
     title: "Alarem",
     mediaType: "image",
     mediaUrl: "/Alarem.jpeg",
-    description: "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
+    description:
+      "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
     category: "App Dev",
   },
 
@@ -115,46 +124,59 @@ const projects: Project[] = [
       "A luxurious hotel website showcasing breathtaking views and top-notch amenities. Watch the stunning video tour on YouTube.",
     category: "Video Editing",
   },
-]
+];
 
-const categories = ["Web Dev", "App Dev", "Video Editing"] as const
+const categories = ["Web Dev", "App Dev", "Video Editing"] as const;
 
 const RecentWork = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const [hoveredProject, setHoveredProject] = useState<Project>(projects[0])
-  const [selectedCategory, setSelectedCategory] = useState<(typeof categories)[number] | "All">("App Dev")
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<Project>(projects[0]);
+  const [selectedCategory, setSelectedCategory] = useState<
+    (typeof categories)[number] | "All"
+  >("App Dev");
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const appDevProjects = projects.filter((project) => project.category === "App Dev")
-    const caltrackProject = appDevProjects.find((project) => project.title === "CALTRACK")
+    const appDevProjects = projects.filter(
+      (project) => project.category === "App Dev"
+    );
+    const caltrackProject = appDevProjects.find(
+      (project) => project.title === "CALTRACK"
+    );
     if (caltrackProject) {
-      setHoveredProject(caltrackProject)
+      setHoveredProject(caltrackProject);
     } else if (appDevProjects.length > 0) {
-      setHoveredProject(appDevProjects[0])
+      setHoveredProject(appDevProjects[0]);
     }
-  }, [])
+  }, []);
 
   const handleProjectClick = (project: Project) => {
-    setSelectedProject(project)
-  }
+    setSelectedProject(project);
+  };
 
   const handleProjectHover = (project: Project) => {
-    setHoveredProject(project)
-  }
+    setHoveredProject(project);
+  };
 
   const handleBackToList = () => {
-    setSelectedProject(null)
-  }
+    setSelectedProject(null);
+  };
 
   const filteredProjects =
-    selectedCategory === "All" ? projects : projects.filter((project) => project.category === selectedCategory)
+    selectedCategory === "All"
+      ? projects
+      : projects.filter((project) => project.category === selectedCategory);
 
   const displayedProjects =
-    filteredProjects.length > 0 ? filteredProjects : projects.filter((project) => project.category === "App Dev")
+    filteredProjects.length > 0
+      ? filteredProjects
+      : projects.filter((project) => project.category === "App Dev");
 
   return (
-    <div className="relative min-h-screen bg-black pb-32 md:pb-48 overflow-hidden" ref={containerRef}>
+    <div
+      className="relative min-h-screen bg-black pb-32 md:pb-48 overflow-hidden"
+      ref={containerRef}
+    >
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none"></div>
 
       <div className="pt-16 sm:pt-24 px-4 relative z-20">
@@ -201,6 +223,19 @@ const RecentWork = () => {
               >
                 {selectedProject.description}
               </motion.p>
+              {selectedProject.websiteUrl && (
+                <motion.a
+                  href={selectedProject.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="mt-8 inline-block bg-white text-black px-6 py-3 rounded-md text-lg hover:bg-opacity-90 transition-colors"
+                >
+                  Visit
+                </motion.a>
+              )}
               <div className="flex flex-col sm:flex-row justify-between w-full mt-12 px-4 relative z-30">
                 <button
                   onClick={handleBackToList}
@@ -208,7 +243,9 @@ const RecentWork = () => {
                 >
                   Back to List
                 </button>
-                <span className="text-white text-base sm:text-lg">Scroll to explore</span>
+                <span className="text-white text-base sm:text-lg">
+                  Scroll to explore
+                </span>
               </div>
             </motion.div>
           ) : (
@@ -241,8 +278,7 @@ const RecentWork = () => {
         </svg>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RecentWork
-
+export default RecentWork;
