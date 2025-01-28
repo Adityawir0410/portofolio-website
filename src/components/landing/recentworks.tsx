@@ -55,7 +55,7 @@ const projects: Project[] = [
     mediaType: "image",
     mediaUrl: "/lawmate.svg",
     description:
-      "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
+      "LawMate adalah aplikasi mobile yang membantu pengguna memahami hukum dengan menyediakan panduan hukum praktis, informasi legal, dan konsultasi berbasis AI.",
     category: "App Dev",
   },
 
@@ -65,7 +65,7 @@ const projects: Project[] = [
     mediaType: "image",
     mediaUrl: "/Alarem.jpeg",
     description:
-      "An elegant platform for a boutique hotel, highlighting its unique features and local attractions.",
+      "Alarem adalah aplikasi inovatif yang dirancang untuk mengelola alarm pintar dengan fitur kustomisasi unik dan pengingat berbasis lokasi.",
     category: "App Dev",
   },
 
@@ -77,7 +77,7 @@ const projects: Project[] = [
     youtubeId: "mtCJcgzGRiE", // Extracted from the YouTube URL
     thumbnailUrl: "/placeholder.svg?height=500&width=400",
     description:
-      "A luxurious hotel website showcasing breathtaking views and top-notch amenities. Watch the stunning video tour on YouTube.",
+      "Video profil perusahaan yang menampilkan keunggulan layanan, fasilitas, dan pencapaian perusahaan secara profesional. Saksikan video eksklusifnya di YouTube.",
     category: "Video Editing",
   },
   {
@@ -88,7 +88,7 @@ const projects: Project[] = [
     youtubeId: "0c5fIbn4VWQ", // Extracted from the YouTube URL
     thumbnailUrl: "/placeholder.svg?height=500&width=400",
     description:
-      "A luxurious hotel website showcasing breathtaking views and top-notch amenities. Watch the stunning video tour on YouTube.",
+      "Video promosi merchandise resmi BUT 2024 dengan visual 3D yang menarik dan desain unik. Tonton videonya di YouTube.",
     category: "Video Editing",
   },
   {
@@ -99,7 +99,7 @@ const projects: Project[] = [
     youtubeId: "w_aVsf8cTws", // Extracted from the YouTube URL
     thumbnailUrl: "/placeholder.svg?height=500&width=400",
     description:
-      "A luxurious hotel website showcasing breathtaking views and top-notch amenities. Watch the stunning video tour on YouTube.",
+      "Highlight acara Inaugurasi FILKOM Universitas Brawijaya yang penuh momen berkesan dan inspiratif. Simak keseruan acara ini melalui video YouTube.",
     category: "Video Editing",
   },
   {
@@ -110,7 +110,7 @@ const projects: Project[] = [
     youtubeId: "UU0jwxtmVbU", // Extracted from the YouTube URL
     thumbnailUrl: "/placeholder.svg?height=500&width=400",
     description:
-      "A luxurious hotel website showcasing breathtaking views and top-notch amenities. Watch the stunning video tour on YouTube.",
+      "Video promosi merchandise HBCC 2024 dengan tampilan desain kreatif dan visual menarik. Tonton selengkapnya di YouTube.",
     category: "Video Editing",
   },
   {
@@ -121,7 +121,7 @@ const projects: Project[] = [
     youtubeId: "ex24xbDbx68", // Extracted from the YouTube URL
     thumbnailUrl: "/placeholder.svg?height=500&width=400",
     description:
-      "A luxurious hotel website showcasing breathtaking views and top-notch amenities. Watch the stunning video tour on YouTube.",
+      "Visualisasi 3D merchandise HBCC yang memberikan pengalaman interaktif dan realistis. Saksikan keunikan desainnya di YouTube.",
     category: "Video Editing",
   },
 ];
