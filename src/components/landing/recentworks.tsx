@@ -77,7 +77,7 @@ const projects: Project[] = [
     youtubeId: "mtCJcgzGRiE", // Extracted from the YouTube URL
     thumbnailUrl: "/placeholder.svg?height=500&width=400",
     description:
-      "Video profil perusahaan yang menampilkan keunggulan layanan, fasilitas, dan pencapaian perusahaan secara profesional. Saksikan video eksklusifnya di YouTube.",
+      "Video profil UKM UNIKAHIDHA, yang menampilkan seputar UKM UNIKAHIDHA",
     category: "Video Editing",
   },
   {
@@ -88,7 +88,7 @@ const projects: Project[] = [
     youtubeId: "0c5fIbn4VWQ", // Extracted from the YouTube URL
     thumbnailUrl: "/placeholder.svg?height=500&width=400",
     description:
-      "Video promosi merchandise resmi BUT 2024 dengan visual 3D yang menarik dan desain unik. Tonton videonya di YouTube.",
+      "Video promosi merchandise resmi BUT 2024 dengan visual 3D yang menarik dan desain unik.",
     category: "Video Editing",
   },
   {
@@ -99,7 +99,7 @@ const projects: Project[] = [
     youtubeId: "w_aVsf8cTws", // Extracted from the YouTube URL
     thumbnailUrl: "/placeholder.svg?height=500&width=400",
     description:
-      "Highlight acara Inaugurasi FILKOM Universitas Brawijaya yang penuh momen berkesan dan inspiratif. Simak keseruan acara ini melalui video YouTube.",
+      "3D Logo Inaugurasi FILKO UB.",
     category: "Video Editing",
   },
   {
